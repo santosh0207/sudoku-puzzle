@@ -33,6 +33,11 @@ export default class Timer extends Component {
 
         return (
             <div>
+                {
+                    (localStorage.getItem("sudokuPuzzleSolved"))?
+                        <h3>Game Completed : {parseInt(JSON.stringify(localStorage.getItem("sudokuPuzzleSolved")),0)}</h3>:
+                        <h3>Game Completed : 0</h3>
+                }
                 <h2>Time : {timeHH<10?"0"+timeHH:timeHH}:{timeMM<10?"0"+timeMM:timeMM}:{timeSS<10?"0"+timeSS:timeSS} </h2>
             </div>
         )

@@ -6,13 +6,13 @@ import { backGroundColor } from '../lib/index'
 
 export default class SudokuBoard extends Component {
     render() {
-        const {sudoku, onChange, clickHandle, hintElement} = this.props;
+        const {sudoku, onChange, clickHandle, hintElement,addGame} = this.props;
         console.log(sudoku.startTime,"start time");
-
+        
         return (
             <div className ="content-container">
                 {!sudoku.solvedTime && <Timer start ={sudoku.startTime}/>}
-                {sudoku.solvedTime && <Result sudoku = {sudoku}/>}
+                {sudoku.solvedTime && <Result sudoku = {sudoku} addGame={addGame}/>}
                 {   
                     sudoku.rows.map((row)=>(
                         
@@ -45,9 +45,16 @@ export default class SudokuBoard extends Component {
                         )
                      )
                 }
-                {hintElement.length < 15 ?
-                    <div className="hintButtonContainer" onClick = {()=>{clickHandle(sudoku)}}> Used Hint ({hintElement.length}/15) </div> :
-                    <div className="hintButtonContainerDisabled"> Hint Click Exhausted</div>
+
+                {
+                    (
+                        !sudoku.solvedTime ?
+                        (hintElement.length < 80 ?
+                            <div className="hintButtonContainer" onClick = {()=>{clickHandle(sudoku)}}> Used Hint ({hintElement.length}/15) </div> :
+                            <div className="hintButtonContainerDisabled"> Hint Click Exhausted</div>):
+                        null
+                    )
+                    
                 }
                 
             </div>

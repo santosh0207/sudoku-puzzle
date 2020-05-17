@@ -10,7 +10,7 @@ class App extends Component {
    * Immer is used to maintain the state non-mutatable
    */
   state = produce({},()=>({ 
-    sudoku : generateSudoku(),
+    sudoku : generateSudoku()
   })); 
 
   onChangeHandler = (e) =>{
@@ -21,13 +21,29 @@ class App extends Component {
         if(!state.sudoku.solvedTime){
           const solved = checkSolution(state.sudoku);
           if(solved){
+            console.log("####################################")
             state.sudoku.solvedTime = new Date();
+
+            localStorage.setItem('sudokuPuzzle', null);
+
+            if(localStorage.getItem("sudokuPuzzleSolved")){
+              localStorage.setItem("sudokuPuzzleSolved",parseInt(JSON.stringify(localStorage.getItem("sudokuPuzzleSolved")),0)+1);
+            }else{
+              localStorage.setItem('sudokuPuzzleSolved', 1);
+            }
           }
         }
       })
     )
   }
 
+  addNewGame =()=>{
+    this.setState(
+      produce((state) => {
+       state.sudoku = generateSudoku()
+      })
+    )
+  }
   solveSudoku =(sudoku)=>{
     /**
      * finding all the possible square where we can fill
@@ -64,7 +80,7 @@ class App extends Component {
   }
 
   render(){
-    console.log(this.state.sudoku.hintElement,"inisde App")
+   //console.log(this.state.sudoku.hintElement,"inisde App")
     return (
       <div className="App">
         <header className="App-header">
@@ -75,6 +91,7 @@ class App extends Component {
             onChange = {this.onChangeHandler} 
             clickHandle = {this.solveSudoku}
             hintElement = {this.state.sudoku.hintElement}
+            addGame= {this.addNewGame}
         />
         <Footer  />
       </div>
