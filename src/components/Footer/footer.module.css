@@ -1,7 +1,8 @@
 .Footer{
     width: 100%;
-    background-color: aliceblue;
-    height: 50px;
+    background-color: #282c34;
+    color :white; 
+    height: 10vh;  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,5 +10,5 @@
 }
 
 .InnerDiv{
-    color: brown;
+    color: white;
 }

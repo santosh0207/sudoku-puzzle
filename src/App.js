@@ -54,6 +54,9 @@ class App extends Component {
       produce((state) => {
         state.sudoku.rows[element.row].cols[element.col].value = state.sudoku.solution[element.row*9+element.col];
         state.sudoku.hintElement.push(element);
+        
+        localStorage.setItem('sudokuPuzzle', JSON.stringify(state.sudoku));
+
       })
     )
    }
