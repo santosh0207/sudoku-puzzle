@@ -1,0 +1,13 @@
+.Footer{
+    width: 100%;
+    background-color: aliceblue;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.InnerDiv{
+    color: brown;
+}
