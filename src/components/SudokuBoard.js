@@ -49,7 +49,7 @@ export default class SudokuBoard extends Component {
                 {
                     (
                         !sudoku.solvedTime ?
-                        (hintElement.length < 80 ?
+                        (hintElement.length < 15 ?
                             <div className="hintButtonContainer" onClick = {()=>{clickHandle(sudoku)}}> Used Hint ({hintElement.length}/15) </div> :
                             <div className="hintButtonContainerDisabled"> Hint Click Exhausted</div>):
                         null
